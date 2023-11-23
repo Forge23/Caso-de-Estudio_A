@@ -1,0 +1,9 @@
+---
+- name: Conectar al router
+ hosts: router1
+ gather_facts: no
+ vars:
+ ansible_connection: telnet
+ tasks:
+ - name: Verificar conexión
+   command: /bin/hostname
