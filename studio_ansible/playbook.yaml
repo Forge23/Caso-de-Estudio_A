@@ -1,0 +1,6 @@
+---
+- name: Conectar a los hosts
+ hosts: targets
+ tasks:
+   - name: Ejecutar comando en los hosts
+     command: /bin/hostname
