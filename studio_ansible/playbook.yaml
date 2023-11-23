@@ -1,6 +1,11 @@
 ---
-- name: Conectar a los hosts
- hosts: targets
+- name: Conectar al router
+ hosts: router1
+ gather_facts: no
+ vars:
+   ansible_connection: ssh
+   ansible_user: angel
+   ansible_ssh_pass: 1234
  tasks:
-   - name: Ejecutar comando en los hosts
+   - name: Verificar conexión
      command: /bin/hostname

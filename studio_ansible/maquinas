@@ -1,4 +1,4 @@
-[targets]
-10.0.0.1   ansible_connection=ssh       ansible_user=myuser       ansible_port=22
+[router]
+router1 ansible_host=10.0.0.1   ansible_connection=ssh       ansible_user=myuser       ansible_ssh_pass=1234
 
 
