@@ -1,9 +1,0 @@
----
-- name: Desplegar la página web en el servidor web
- hosts: webserver1
- become: yes
- tasks:
- - name: Copiar la página web al servidor web
-   copy: src=index.html dest=/var/www/html/
- - name: Iniciar y habilitar el servicio Nginx
-   service: name=nginx state=started enabled=yes
