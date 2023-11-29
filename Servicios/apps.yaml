@@ -1,0 +1,19 @@
+---
+- name: Instalar LAMP en el servidor web
+  hosts: webserver1
+  become: yes
+  vars:
+    mysql_root_password: "mysql_root_password"
+  tasks:
+   - name: Actualizar lista de paquetes
+     dnf: update_cache=yes
+   - name: Instalar Apache
+     dnf: name=httpd state=latest
+   - name: Instalar PHP
+     dnf: name=php state=latest
+   - name: Instalar MySQL
+     dnf: name=mysql-server state=latest
+   - name: Iniciar y habilitar el servicio Apache
+     systemd: name=httpd state=started enabled=yes
+   - name: Iniciar y habilitar el servicio MySQL
+     systemd: name=mysqld state=started enabled=yes
