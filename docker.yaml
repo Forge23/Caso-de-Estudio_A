@@ -1,0 +1,41 @@
+---
+- hosts: ubuntu
+ become: yes
+ tasks:
+   - name: Actualizar la lista de paquetes
+     apt:
+       update_cache: yes
+
+   - name: Instalar paquetes necesarios
+     apt:
+       name: 
+         - ca-certificates
+         - curl
+         - gnupg
+         - apt-transport-https
+         - software-properties-common
+       state: present
+
+   - name: Agregar la clave GPG oficial de Docker
+     apt_key:
+       url: https://download.docker.com/linux/ubuntu/gpg
+       state: present
+
+   - name: Agregar el repositorio de Docker a las fuentes de Apt
+     apt_repository:
+       repo: deb [arch={{ ansible_architecture }} signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+       state: present
+
+   - name: Actualizar la lista de paquetes
+     apt:
+       update_cache: yes
+
+   - name: Instalar Docker
+     apt:
+       name: 
+         - docker-ce
+         - docker-ce-cli
+         - containerd.io
+         - docker-buildx-plugin
+         - docker-compose-plugin
+       state: present
